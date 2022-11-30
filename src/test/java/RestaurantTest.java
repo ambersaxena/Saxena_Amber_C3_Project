@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +19,21 @@ class RestaurantTest {
         restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
         restaurant.addToMenu("Vegetable lasagne", 269);
+    }
+
+    @Test
+    public void orderTotal_should_return_119_if_only_one_item_with_price_119_passed(){
+        List<String> totalItems = new ArrayList<String>();
+        totalItems.add("Sweet corn soup");
+        assertEquals(119, restaurant.orderTotal(totalItems));
+    }
+
+   @Test
+    public void orderTotal_should_return_388_if_two_item_with_price_119_and_269_passed(){
+        List<String> totalItems = new ArrayList<String>();
+        totalItems.add("Sweet corn soup");
+        totalItems.add("Vegetable lasagne");
+        assertEquals(388, restaurant.orderTotal(totalItems));
     }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
